@@ -21,9 +21,9 @@ fn main() {
   }
 
   let mut similarity = 0u32;
-  for i in 0..lefts.len() {
-    if let Some(v) = rights_count.get(&lefts[i]) {
-      similarity += lefts[i] * v;
+  for left in lefts.iter() {
+    if let Some(v) = rights_count.get(left) {
+      similarity += left * v;
     }
   }
 
