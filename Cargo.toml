@@ -1,22 +1,6 @@
 [package]
 name = "aoc2024"
 
-[[bin]]
-name = "day1"
-path = "src/day1.rs"
-
-[[bin]]
-name = "day1_part2"
-path = "src/day1_part2.rs"
-
-[[bin]]
-name = "day2"
-path = "src/day2.rs"
-
-[[bin]]
-name = "day2_part2"
-path = "src/day2_part2.rs"
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
