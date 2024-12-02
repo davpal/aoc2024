@@ -1,14 +1,11 @@
 use std::io::{self, prelude::*, BufReader};
-
-fn insert_sorted<T: Ord>(vect: &mut Vec<T>, val: T) {
-  vect.insert(vect.binary_search(&val).unwrap_or_else(|e| e), val);
-}
+use std::collections::BinaryHeap;
 
 fn main() {
   let reader = BufReader::new(io::stdin());
 
-  let mut lefts = Vec::<u32>::new();
-  let mut rights = Vec::<u32>::new();
+  let mut left_heap = BinaryHeap::new();
+  let mut right_heap = BinaryHeap::new();
 
   for line in reader.lines() {
     let s = line.unwrap();
@@ -16,13 +13,16 @@ fn main() {
     let left: u32 = nums[0].parse().unwrap();
     let right: u32 = nums[1].parse().unwrap();
 
-    insert_sorted(&mut lefts, left);
-    insert_sorted(&mut rights, right);
+    left_heap.push(left);
+    right_heap.push(right);
   }
 
+  let left_vec = left_heap.into_sorted_vec();
+  let right_vec = right_heap.into_sorted_vec();
+
   let mut total_distance = 0u32;
-  for i in 0..lefts.len() {
-    total_distance += lefts[i].abs_diff(rights[i]);
+  for i in 0..left_vec.len() {
+    total_distance += left_vec[i].abs_diff(right_vec[i]);
   }
 
   println!("{}", total_distance);
